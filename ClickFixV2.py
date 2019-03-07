@@ -15,8 +15,9 @@ MOVING: int = 512
 DOWN: int = 513
 UP: int = 514
 
-MIN_DELAY: int = 250  # ms
+MIN_DELAY: int = 1050  # ms
 MIN_DISTANCE: int = 10
+SELECTION_RATE: float = 0.12
 
 mouseLock: bool = False
 mouseIsUp: bool = True
@@ -75,11 +76,10 @@ def on_mouse_event(event):
     # print(event.Time, mouseState, mouseIsSelecting, mouseStateInSelection,
     # get_distance(lastClickDownPos, event.Position), event.Message)
 
-    # TO DO: if moved less than MIN_DISTANCE in MIN_DELAY / 2 than unlock mouse
-
+    # TO DO: find the time of the bug during selection - the 2 longest times will do the job
     if mouseLock and mouseIsUp and (
             (event.Time - lastClickUpTime > MIN_DELAY) or
-            (event.Time - lastClickUpTime > MIN_DELAY / 2 and get_distance(
+            (event.Time - lastClickUpTime > MIN_DELAY * SELECTION_RATE and get_distance(
                 event.Position, lastClickRealDownPos) <= MIN_DISTANCE)
     ):
         print(event.Time, event.Time - lastClickUpTime, get_distance(event.Position, lastClickRealDownPos))
