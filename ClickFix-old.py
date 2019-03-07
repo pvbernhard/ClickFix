@@ -95,7 +95,7 @@ def onmouseevent(event):
         # mouse down
         if event.Message == 513:
             if event.Time - lastClickUpTime > MIN_DELAY:
-                lastClickDownPos = event.Position
+                lastClickRealDownPos = event.Position
                 mouseState = 'down'
 
                 # set high priority when clicking
