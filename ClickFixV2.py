@@ -15,9 +15,9 @@ MOVING: int = 512
 DOWN: int = 513
 UP: int = 514
 
-MIN_DELAY: int = 1050  # ms
+MIN_DELAY: int = 330  # ms
 MIN_DISTANCE: int = 10
-SELECTION_RATE: float = 0.12
+SELECTION_RATE: float = 0.4
 
 mouseLock: bool = False
 mouseIsUp: bool = True
@@ -48,7 +48,6 @@ def get_distance(pos_1, pos_2):
 
 
 def mouse_up(hndl, pos):
-    print('mouse_up')
     hndl.UnhookMouse()
     import win32con
     ctypes.windll.user32.mouse_event(win32con.MOUSEEVENTF_ABSOLUTE | win32con.MOUSEEVENTF_LEFTUP, pos[0], pos[1], 0, 0)
@@ -73,37 +72,30 @@ def on_mouse_event(event):
     # called when mouse events are received
     # messages(event)
 
-    # print(event.Time, mouseState, mouseIsSelecting, mouseStateInSelection,
-    # get_distance(lastClickDownPos, event.Position), event.Message)
-
-    # TO DO: find the time of the bug during selection - the 2 longest times will do the job
     if mouseLock and mouseIsUp and (
             (event.Time - lastClickUpTime > MIN_DELAY) or
             (event.Time - lastClickUpTime > MIN_DELAY * SELECTION_RATE and get_distance(
                 event.Position, lastClickRealDownPos) <= MIN_DISTANCE)
     ):
-        print(event.Time, event.Time - lastClickUpTime, get_distance(event.Position, lastClickRealDownPos))
         mouse_up(hm, lastClickUpPos)
         mouseLock = False
     if event.Message == UP:
-        print(event.Time, 'up')
         mouseIsUp = True
         mouseLock = True
         lastClickUpTime = event.Time
         lastClickUpPos = event.Position
         return False
     if event.Message == DOWN:
-        print(event.Time, 'down')
         set_high_priority()
         mouseIsUp = False
         if not mouseLock:
             mouseLock = True
             lastClickRealDownPos = event.Position
-            print(event.Time, 'true down')
             return True
         else:
             return False
     return True
+
 
 # set high priority
 set_high_priority()
