@@ -29,7 +29,7 @@ To make things a bit more responsive, there's a distinction between *dragging* t
 
 There is a binary file in the `dist` folder already if you don't feel like compiling your own.
 
-I was made with `pyinstaller -w -F`.
+It was made with `pyinstaller -w -F`.
 
 ### Prerequisites
 
