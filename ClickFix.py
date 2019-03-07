@@ -16,7 +16,7 @@ DOWN: int = 513
 UP: int = 514
 
 MIN_DELAY: int = 130  # ms
-MIN_DISTANCE: int = 10
+MIN_DISTANCE: int = 10  # px
 SELECTION_RATE: float = 2
 
 mouseLock: bool = False
@@ -24,18 +24,6 @@ mouseIsUp: bool = True
 lastClickUpTime: int = 0
 lastClickUpPos: Tuple[int, int] = (-1, -1)
 lastClickRealDownPos: Tuple[int, int] = (-1, -1)
-
-
-def messages(event):
-    print('MessageName:', event.MessageName)
-    print('Message:', event.Message)
-    print('Time:', event.Time)
-    print('Window:', event.Window)
-    print('WindowName:', event.WindowName)
-    print('Position:', event.Position)
-    print('Wheel:', event.Wheel)
-    print('Injected:', event.Injected)
-    print('---')
 
 
 def set_high_priority():
@@ -68,9 +56,6 @@ def on_mouse_event(event):
     global lastClickUpTime
     global lastClickUpPos
     global lastClickRealDownPos
-
-    # called when mouse events are received
-    # messages(event)
 
     if mouseLock and mouseIsUp and (
             (event.Time - lastClickUpTime > MIN_DELAY * SELECTION_RATE) or
