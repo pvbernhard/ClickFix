@@ -15,7 +15,9 @@ Yeah, but why?
 
 After some tests, I found out that it's not the mouse in particular (probably... I tested 3 different mouses; maybe I'm just unlucky) and it's not the OS (I tested both in Windows 10 and Ubuntu 18.04). So I still have no idea what's happening, but I suspect the CMOS battery of my notebook.
 
-If you have a similar problem you might find this script useful.
+**Update**: It was the mouse, after all, all 3 of them. My notebook seems to be more sensitive than the other notebook where I tested the mouses. The spring inside the switch of the left button lost tension in all three mouses, even though two were new. I fixed it following this [tutorial](https://www.instructables.com/id/Repair-mouse-with-double-click-problem).
+
+If you have a similar problem and this doesn't fix it for you (or you can't do it for some reason) you might find this script useful.
 
 ## What the script do?
 
