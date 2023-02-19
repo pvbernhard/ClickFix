@@ -1,3 +1,11 @@
+# Archive
+
+This project is being archived since there are way better alternatives out there and I don't really need it anymore.
+
+Also, the best "fix" to wild clicks is a new (and good) mouse anyway, your wrist will thank you.
+
+---
+
 # Click Fix
 
 A little python script I made to fix my mouse issues with random clicks.
